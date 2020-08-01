@@ -1,5 +1,7 @@
 from discord.ext import commands, tasks
 
+import rundiscord
+
 bot = commands.Bot(command_prefix='!!')
 
 
@@ -22,15 +24,4 @@ async def leave(ctx):
     await ctx.voice_client.disconnect()
 
 
-async def _join(self, ctx: commands.Context):
-    """Joins a voice channel."""
-
-    destination = ctx.author.voice.channel
-    if ctx.voice_state.voice:
-        await ctx.voice_state.voice.move_to(destination)
-        return
-
-    ctx.voice_state.voice = await destination.connect()
-
-
-bot.run("NTI2ODA1MzM0ODc5MTA5MTQz.XCEPsw.6-3e3RpKGEDa28orfgdfVNxPOM0")
+rundiscord.rundiscordbot(bot)
