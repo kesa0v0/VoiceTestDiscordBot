@@ -12,6 +12,11 @@ async def on_ready():
     print(bot.user.id)  # 위와 같은 클래스에서 id 프로퍼티 출력
     print('------')
 
+@bot.command()
+async def sine(ctx):
+    channel = ctx.author.voice.channel
+
+
 
 @bot.command()
 async def join(ctx):
