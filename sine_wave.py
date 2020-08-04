@@ -4,7 +4,7 @@ import numpy as np
 
 p = pyaudio.PyAudio()
 
-# volume = 0.2  # range [0.0, 1.0]
+volume = 0.2  # range [0.0, 1.0]
 # fs = 44100  # sampling rate, Hz, must be integer
 # duration = 1.0  # in seconds, may be float
 # f = 440.0  # sine frequency, Hz, may be float
