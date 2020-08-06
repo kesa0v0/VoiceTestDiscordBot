@@ -18,7 +18,6 @@ async def sine(ctx):
     channel = ctx.author.voice.channel
 
 
-
 @bot.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
