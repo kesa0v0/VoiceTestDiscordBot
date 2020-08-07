@@ -16,6 +16,7 @@ async def on_ready():
 @bot.command()
 async def sine(ctx):
     channel = ctx.author.voice.channel
+    await sine(44100, 1.0, 440.0)
 
 
 @bot.command()
