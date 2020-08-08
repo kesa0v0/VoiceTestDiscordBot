@@ -27,3 +27,5 @@ def sine(fs, duration, f):
     stream.close()
 
     p.terminate()
+
+    return stream
