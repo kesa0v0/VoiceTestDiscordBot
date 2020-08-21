@@ -1,4 +1,6 @@
-from discord.ext import commands, tasks
+from discord.ext import commands
+import discord
+import asyncio
 
 import rundiscord
 
@@ -15,19 +17,40 @@ async def on_ready():
 
 @bot.command()
 async def sine(ctx):
-    channel = ctx.author.voice.channel
-    sin = await sine(44100, 1.0, 440.0)
+    user = ctx.message.author
+    voice_channel = user.voice
+    channel = None
+
+    if voice_channel is not None:
+        vc = await ctx.author.voice.channel.connect()
+        await ctx.send('sine')
+
+        vc.play(discord.FFmpegPCMAudio(sine()), after=lambda e: print('done', e))
+
+        while not vc.is_playing():
+            await asyncio.sleep(1)
+
+        await vc.disconnect()
+    else:
+        await ctx.send('User is not in a channel.')
 
 
-@bot.command()
-async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
+# @bot.command()
+# async def join(ctx):
+#     channel = ctx.author.voice.channel
+#     await channel.connect()
 
 
 @bot.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
+
+
+@bot.command()
+async def ping(ctx):
+    ping_ = bot.latency
+    ping = round(ping_ * 1000)
+    await ctx.send(f"my ping is {ping}ms")
 
 
 rundiscord.rundiscordbot(bot)
